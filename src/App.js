@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React ,{useState} from 'react';
+import Navigation from './component/Navigation'
+import TodoList from './component/TodoList'
+import Signin from './component/Signin'
+import Signup from './component/Signup'
+import 'tachyons'
 import './App.css';
 
-function App() {
+const App = () => {
+
+  const [route, setRoute] = useState('home')
+  const [inputText, setInput] = useState('')
+  const [todos ,setTodo] = useState([])
+
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navigation setRoute={setRoute}/>
+      {route==='home'
+      ?<TodoList inputText={inputText} todos={todos} setTodo={setTodo} setInput={setInput}/>
+      :(route==='signin'
+      ?<Signin setRoute={setRoute}/>
+      :<Signup setRoute={setRoute}/>
+      )
+    
+      }
+      
+     
     </div>
   );
 }
+
 
 export default App;
