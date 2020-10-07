@@ -1,4 +1,5 @@
 import React ,{useState} from 'react';
+import {Navbar,NavbarBrand} from 'reactstrap';
 import Navigation from './component/Navigation'
 import TodoList from './component/TodoList'
 import Signin from './component/Signin'
@@ -14,19 +15,24 @@ const App = () => {
 
   
   return (
-    <div className="App">
-      <Navigation setRoute={setRoute}/>
-      {route==='home'
-      ?<TodoList inputText={inputText} todos={todos} setTodo={setTodo} setInput={setInput}/>
-      :(route==='signin'
-      ?<Signin setRoute={setRoute}/>
-      :<Signup setRoute={setRoute}/>
-      )
-    
-      }
-      
-     
-    </div>
+    <div className="">
+      <Navbar dark color="primary">
+            <div className="container">
+                  <NavbarBrand href="/" className="ml-2">TodoList</NavbarBrand>
+                  <NavbarBrand className="mr-2"><Navigation setRoute={setRoute}/></NavbarBrand>
+            </div>
+        </Navbar>
+        <div className="App">
+           
+                  {route==='home'
+                    ?<TodoList inputText={inputText} todos={todos} setTodo={setTodo} setInput={setInput}/>
+                    :(route==='signin'
+                    ?<Signin setRoute={setRoute}/>
+                    :<Signup setRoute={setRoute}/>
+                    )
+                  }
+        </div>
+        </div>
   );
 }
 

@@ -9,9 +9,9 @@ const TodoList = ({setInput, inputText, todos, setTodo}) =>{
     const Save = (e) =>{
         e.preventDefault()
         setTodo([
-            ...todos,{ text:inputText , id:Math.random() *1000},
+            ...todos,{ text:inputText /*,id:Math.random() *1000 */},
         ])
-        setInput('')
+        setInput(null)
     }
     
     const Deleting = (e) =>{
@@ -21,9 +21,10 @@ const TodoList = ({setInput, inputText, todos, setTodo}) =>{
    
 
     return(
-        <div>
-           <p className='f4   color: #E7040F '> Your TodoList is </p>
-           <ul className='center'>
+        <div className="container">
+           <h4> Your TodoList is </h4>
+           <div className="container">
+           <ul >
          {todos.map( (todo)=>(
              <Todo 
              text={todo.text}
@@ -31,11 +32,12 @@ const TodoList = ({setInput, inputText, todos, setTodo}) =>{
              />
          ))}
            </ul>
+           </div>
             <div>
-                <input value={inputText} onChange={inputHandler} className='f4 w-20 center pa1' type='text' placeholder='add items'></input>
+                <input value={inputText} onChange={inputHandler} className='f4 w-40 center pa1' type='text' placeholder='add items'></input>
                <div>
-                <button onClick={Save} className='f9 w-09'>Save</button>
-                <button onClick={Deleting} className='f9 w-09'>Delete</button>
+                <button onClick={Save} className='f9 w-09 m-2'>Save</button>
+                <button onClick={Deleting} className='f9 w-09 m-2'>Delete</button>
                 </div>
             </div>
         </div>
