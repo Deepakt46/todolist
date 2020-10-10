@@ -11,6 +11,17 @@ const App = () => {
   const [route, setRoute] = useState('home')
   const [inputText, setInput] = useState('')
   const [todos ,setTodo] = useState([])
+  const [user, setUser] = useState([])
+const loadUser =(user) =>{
+setUser({
+  id:user.id,
+  name:user.name,
+  email:user.email,
+  entries:[],
+  join:user.join
+})
+}
+
 
   
   return (
@@ -20,7 +31,7 @@ const App = () => {
       ?<TodoList inputText={inputText} todos={todos} setTodo={setTodo} setInput={setInput}/>
       :(route==='signin'
       ?<Signin setRoute={setRoute}/>
-      :<Signup setRoute={setRoute}/>
+      :<Signup user={user} loadUser={loadUser} setRoute={setRoute}/>
       )
     
       }
